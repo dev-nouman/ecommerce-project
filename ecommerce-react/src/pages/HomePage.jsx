@@ -4,6 +4,12 @@ import { products } from '../../starting-code/data/products'
 import './HomePage.css'
 
 const HomePage = () => {
+
+    fetch('http://http://localhost:3000/api/products')
+    .then((response)=>{
+        console.log(response)
+    })
+
     return (
         <>
             <title>Ecommerce</title>
