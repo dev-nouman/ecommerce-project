@@ -5,6 +5,7 @@ import './HomePage.css'
 const HomePage = () => {
     return (
         <>
+        <title>Ecommerce</title>
 
             <div className="header">
                 <div className="left-section">
