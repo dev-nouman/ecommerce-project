@@ -2,7 +2,13 @@ import React from 'react'
 import { Link } from 'react-router'
 import './Header.css'
 
-const Header = () => {
+const Header = ({ cart }) => {
+    let totalQuantity = 0;
+    
+    cart.forEach((cartItem) => {
+       totalQuantity += cartItem.quantity; 
+    });
+
     return (
         <>
             <div className="header">
