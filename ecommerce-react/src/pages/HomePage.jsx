@@ -5,10 +5,12 @@ import './HomePage.css'
 
 const HomePage = () => {
 
-    fetch('http://http://localhost:3000/api/products')
-    .then((response)=>{
-        console.log(response)
-    })
+    fetch('http://localhost:3000/api/products')
+        .then((response) => {
+            return response.json();
+        }).then((data) => {
+            console.log(data);
+        });
 
     return (
         <>
