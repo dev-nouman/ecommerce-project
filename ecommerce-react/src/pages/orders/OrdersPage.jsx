@@ -3,8 +3,8 @@ import { useState, useEffect, Fragment } from 'react'
 import axios from 'axios'
 import dayjs from 'dayjs'
 import './OrdersPage.css'
-import Header from '../components/Header'
-import { formatMoney } from '../utils/money'
+import Header from '../../components/Header'
+import { formatMoney } from '../../utils/money'
 
 
 const OrdersPage = ({ cart }) => {
