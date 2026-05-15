@@ -2,8 +2,32 @@ import React from 'react'
 import dayjs from 'dayjs'
 import { formatMoney } from '../../utils/money'
 import DeliveryOptions from './DeliveryOptions'
+import axios from 'axios'
 
 const OrderSummary = ({ cart, deliveryOptions, setCart }) => {
+
+    const deleteCartItem = async (productId) => {
+        await axios.delete(`/api/cart-items/${productId}`);
+
+        // Refresh cart after deletion
+        axios.get(`/api/cart-items?expand=product`)
+            .then((response) => {
+                setCart(response.data);
+            });
+    }
+
+    const updateQuantity = async (productId, quantity) => {
+        await axios.put(`/api/cart-items/${productId}`, {
+            quantity: quantity
+        });
+
+        // Refresh cart after update
+        axios.get(`/api/cart-items?expand=product`)
+            .then((response) => {
+                setCart(response.data);
+            });
+    }
+
     return (
         <div className="order-summary">
 
@@ -35,10 +59,20 @@ const OrderSummary = ({ cart, deliveryOptions, setCart }) => {
                                     <span>
                                         Quantity: <span className="quantity-label">{cartItem.quantity}</span>
                                     </span>
-                                    <span className="update-quantity-link link-primary">
-                                        Update
-                                    </span>
-                                    <span className="delete-quantity-link link-primary">
+                                    <select onChange={(e) => updateQuantity(cartItem.productId, parseInt(e.target.value))} value={cartItem.quantity} style={{ marginLeft: '5px' }}>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                    <span className="delete-quantity-link link-primary"
+                                        onClick={() => deleteCartItem(cartItem.productId)}>
                                         Delete
                                     </span>
                                 </div>
