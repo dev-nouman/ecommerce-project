@@ -1,5 +1,6 @@
 import React from 'react'
 import dayjs from 'dayjs'
+import { loadCart } from '../../utils/cartLoader'
 import { formatMoney } from '../../utils/money'
 import DeliveryOptions from './DeliveryOptions'
 import axios from 'axios'
@@ -10,10 +11,7 @@ const OrderSummary = ({ cart, deliveryOptions, setCart }) => {
         await axios.delete(`/api/cart-items/${productId}`);
 
         // Refresh cart after deletion
-        axios.get(`/api/cart-items?expand=product`)
-            .then((response) => {
-                setCart(response.data);
-            });
+        loadCart(setCart);
     }
 
     const updateQuantity = async (productId, quantity) => {
@@ -22,10 +20,7 @@ const OrderSummary = ({ cart, deliveryOptions, setCart }) => {
         });
 
         // Refresh cart after update
-        axios.get(`/api/cart-items?expand=product`)
-            .then((response) => {
-                setCart(response.data);
-            });
+        loadCart(setCart);
     }
 
     return (

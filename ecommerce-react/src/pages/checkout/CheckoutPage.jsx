@@ -60,7 +60,7 @@ const CheckoutPage = ({ cart, setCart }) => {
                 <div className="checkout-grid">
                     <OrderSummary cart={cart} deliveryOptions={deliveryOptions} setCart={setCart} />
 
-                    <PaymentSummary paymentSummary={paymentSummary} />
+                    <PaymentSummary paymentSummary={paymentSummary} setCart={setCart} />
                 </div>
             </div>
         </>

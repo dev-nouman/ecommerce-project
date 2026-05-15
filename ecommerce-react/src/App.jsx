@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import HomePage from './pages/home/HomePage'
 import CheckoutPage from './pages/checkout/CheckoutPage'
 import OrdersPage from './pages/orders/OrdersPage'
+import { loadCart } from './utils/cartLoader'
 import './App.css'
 
 const App = () => {
@@ -11,10 +12,7 @@ const App = () => {
 
   const [cart, setCart] = useState([]);
   useEffect(() => {
-    axios.get(`/api/cart-items?expand=product`)
-      .then((response) => {
-        setCart(response.data);
-      })
+    loadCart(setCart);
   }, [])
 
   return (

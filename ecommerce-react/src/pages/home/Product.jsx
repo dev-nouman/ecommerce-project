@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import axios from 'axios';
+import { loadCart } from '../../utils/cartLoader';
 import { formatMoney } from '../../utils/money';
 
-const Product = ({ product }) => {
+const Product = ({ product, setCart }) => {
 
     const [quantity, setQuantity] = useState(1);
 
@@ -57,12 +58,9 @@ const Product = ({ product }) => {
             <button className="add-to-cart-button button-primary" onClick={() => {
                 axios.post('/api/cart-items', {
                     productId: product.id,
-                    quantity: 1
+                    quantity: quantity
                 }).then(() => {
-                    axios.get(`/api/cart-items?expand=product`)
-                        .then((response) => {
-                            setCart(response.data);
-                        });
+                    loadCart(setCart);
                 });
             }}>
                 Add to Cart

@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios';
+import { loadCart } from '../../utils/cartLoader';
 import { formatMoney } from '../../utils/money';
 import dayjs from 'dayjs';
 

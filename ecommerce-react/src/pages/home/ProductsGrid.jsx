@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { loadCart } from '../../utils/cartLoader'
 import Product from './Product'
 
 const ProductsGrid = ({ products, setCart }) => {
@@ -9,7 +10,7 @@ const ProductsGrid = ({ products, setCart }) => {
 
             {products.map((product) => {
                 return (
-                    <Product key={product.id} product={product} />
+                    <Product key={product.id} product={product} setCart={setCart} />
                 )
             })}
         </div>
